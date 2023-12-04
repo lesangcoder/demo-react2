@@ -1,6 +1,6 @@
 // lass component
 //function component
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DisplayInfor from "./DisplayInfor";
 import AddUserInfor from "./AddUserInfor";
 
@@ -14,6 +14,7 @@ const MyComponent = (props) => {
     ]);
     const handleAddNewUser = (userObj) => {
         setListUser([userObj, ...listUser]);
+        console.log(listUser);
     };
 
     const handleDeleteUser = (userId) => {
@@ -21,7 +22,15 @@ const MyComponent = (props) => {
         listUserClone = listUserClone.filter((item) => item.id !== userId);
         setListUser(listUserClone);
     };
+    
+    console.log("call me render");
 
+    useEffect(() => {
+        setTimeout(() => {
+            document.title = "Le Thanh Sang";
+        },3000)
+        console.log("call me useeffect");
+    });
     return (
         <>
             <AddUserInfor handleAddNewUser={handleAddNewUser} />
